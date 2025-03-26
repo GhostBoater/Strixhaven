@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strixhaven Encounter Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Strixhaven Encounter Generator</h1>
+  <label for="location">Choose a location:</label>
+  <select id="location">
+    <option value="Biblioplex">Biblioplex</option>
+    <option value="Campus Grounds">Campus Grounds</option>
+    <option value="Student Lounge">Student Lounge</option>
+    <option value="Dormitories">Dormitories</option>
+  </select>
+  
+  <label for="timeOfDay">Choose a time of day:</label>
+  <select id="timeOfDay">
+    <option value="Morning">Morning</option>
+    <option value="Afternoon">Afternoon</option>
+    <option value="Evening">Evening</option>
+  </select>
+
+  <button id="generateBtn">Generate Encounter</button>
+  
+  <div id="encounter"></div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
