@@ -1,0 +1,25 @@
+{
+  "year": 1,
+  "location": "Biblioplex",
+  "timeOfDay": "Afternoon",
+  "encounters": [
+    {
+      "description": "You overhear a heated debate about the best way to prepare for an upcoming exam. Some students notice you and ask for your input.",
+      "studentsInvolved": "Any",
+      "choices": [
+        { "roll": "Arcana DC 15", "effect": "You share advanced study techniques, impressing the group and earning some study partners." },
+        { "roll": "Deception DC 15", "effect": "You make up an outrageous study method as a joke. If successful, they laugh and find you amusing; if failed, they take you seriously and later resent you when it doesn’t work." },
+        { "roll": "No roll", "effect": "You ignore the conversation and move on, missing a chance to make connections." }
+      ]
+    },
+    {
+      "description": "A student rushes up to you in a panic—they've lost their class notes and need help before a quiz.",
+      "studentsInvolved": "Any",
+      "choices": [
+        { "roll": "Investigation DC 15", "effect": "You find the missing notes quickly, earning the student’s gratitude." },
+        { "roll": "Persuasion DC 10", "effect": "You offer to summarize key points for them. They appreciate the help and may repay the favor later." },
+        { "roll": "No roll", "effect": "You decline to help, and the student seems disappointed." }
+      ]
+    }
+  ]
+}
