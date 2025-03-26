@@ -23,16 +23,22 @@ Promise.all([
         // Randomly select a student NPC from the list
         const randomStudent = npcData.students[Math.floor(Math.random() * npcData.students.length)];
 
-        // Encounter Description with Student NPC
+        // Encounter Description with Student NPC inline
         const description = document.createElement('div');
         description.classList.add('description');
         description.innerHTML = `
           <h2>Encounter</h2>
-          <p>${encounter.description}</p>
           <p><strong>${randomStudent.name}</strong> (${randomStudent.year} year student from ${randomStudent.college}) rushes up to you in a panic—they've lost their class notes and need help before a quiz.</p>
-          <p><em>${randomStudent.name}, a ${randomStudent.year} year student from ${randomStudent.college}, is ${randomStudent.personality.toLowerCase()}.</em></p>
         `;
         encounterDiv.appendChild(description);
+
+        // Student's Blurb Section
+        const studentBlurb = document.createElement('div');
+        studentBlurb.classList.add('student-blurb');
+        studentBlurb.innerHTML = `
+          <p><em>${randomStudent.name}, a ${randomStudent.year} year student from ${randomStudent.college}, is ${randomStudent.personality.toLowerCase()}.</em></p>
+        `;
+        encounterDiv.appendChild(studentBlurb);
 
         // Choices Section
         const choicesDiv = document.createElement('div');
