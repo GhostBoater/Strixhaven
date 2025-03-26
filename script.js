@@ -41,15 +41,33 @@ document.getElementById('generateBtn').addEventListener('click', function () {
 
   if (filteredEncounters.length > 0) {
     const encounter = filteredEncounters[0].encounters[Math.floor(Math.random() * filteredEncounters[0].encounters.length)];
-    const description = document.createElement('p');
-    description.textContent = encounter.description;
+
+    // Encounter Description
+    const description = document.createElement('div');
+    description.classList.add('description');
+    description.innerHTML = `<h2>Encounter</h2><p>${encounter.description}</p>`;
     encounterDiv.appendChild(description);
+
+    // Choices Section
+    const choicesDiv = document.createElement('div');
+    choicesDiv.classList.add('choices');
+    const choiceHeader = document.createElement('p');
+    choiceHeader.classList.add('choice-header');
+    choiceHeader.textContent = "Choices:";
+    choicesDiv.appendChild(choiceHeader);
 
     encounter.choices.forEach(choice => {
       const choiceButton = document.createElement('button');
-      choiceButton.textContent = `Roll: ${choice.roll} - ${choice.effect}`;
-      encounterDiv.appendChild(choiceButton);
+      choiceButton.textContent = `Roll: ${choice.roll}`;
+      
+      const effectText = document.createElement('p');
+      effectText.classList.add('effect');
+      effectText.textContent = `Effect: ${choice.effect}`;
+      choicesDiv.appendChild(choiceButton);
+      choicesDiv.appendChild(effectText);
     });
+
+    encounterDiv.appendChild(choicesDiv);
   } else {
     encounterDiv.textContent = 'No encounters found for the selected location and time.';
   }
