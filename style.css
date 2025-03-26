@@ -1,6 +1,6 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
   color: #333;
   margin: 0;
   padding: 20px;
@@ -8,25 +8,32 @@ body {
 
 h1 {
   text-align: center;
+  color: #004d00;
+  margin-bottom: 40px;
+  font-size: 36px;
 }
 
 label {
   font-weight: bold;
-  margin-top: 10px;
+  font-size: 18px;
 }
 
 select, button {
   margin-left: 10px;
+  font-size: 16px;
+  padding: 10px;
+}
+
+select, button {
+  width: 200px;
 }
 
 button {
-  padding: 10px 20px;
   margin-top: 20px;
   cursor: pointer;
   background-color: #4CAF50;
   color: white;
   border: none;
-  font-size: 16px;
 }
 
 button:hover {
@@ -36,24 +43,51 @@ button:hover {
 #encounter {
   margin-top: 30px;
   padding: 20px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
 }
 
-button {
+#encounter h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #2c6b2f;
+}
+
+#encounter .description, 
+#encounter .choices {
+  margin-bottom: 20px;
+}
+
+#encounter .description p {
+  font-size: 18px;
+}
+
+#encounter .choices p {
+  font-size: 18px;
   margin-top: 10px;
-  display: block;
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  background-color: #008CBA;
-  border: none;
-  color: white;
-  text-align: center;
-  cursor: pointer;
 }
 
-button:hover {
+#encounter .choices button {
+  width: 100%;
+  background-color: #008CBA;
+}
+
+#encounter .choices button:hover {
   background-color: #007B9A;
+}
+
+.choice-header {
+  font-size: 22px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #004d00;
+}
+
+.effect {
+  font-style: italic;
+  margin-left: 20px;
+  margin-top: 5px;
+  color: #555;
 }
