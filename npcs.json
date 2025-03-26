@@ -1,0 +1,21 @@
+{
+  "students": [
+    { "name": "Ziraj", "college": "Silverquill", "year": 2, "personality": "Competitive, witty" },
+    { "name": "Tasha", "college": "Prismari", "year": 1, "personality": "Passionate, theatrical" },
+    { "name": "Quentillius", "college": "Silverquill", "year": 3, "personality": "Arrogant, eloquent" },
+    { "name": "Aurora Luna Wynterstarr", "college": "Silverquill", "year": 2, "personality": "Dramatic, poetic" },
+    { "name": "Melwythorne", "college": "Witherbloom", "year": 1, "personality": "Stoic, thoughtful" },
+    { "name": "Rootha Squallhart", "college": "Prismari", "year": 3, "personality": "Creative, perfectionist" },
+    { "name": "Valdin", "college": "Quandrix", "year": 2, "personality": "Logical, reserved" },
+    { "name": "Cadoras Damellawar", "college": "Witherbloom", "year": 1, "personality": "Cheerful, laid-back" },
+    { "name": "Tilana Kapule", "college": "Quandrix", "year": 3, "personality": "Curious, analytical" }
+  ],
+  "teachers": [
+    { "name": "Professor Onyx", "college": "Silverquill", "personality": "Mysterious, commanding" },
+    { "name": "Dean Tullus", "college": "Lorehold", "personality": "Passionate, wise" },
+    { "name": "Dean Lisette", "college": "Witherbloom", "personality": "Gentle, nurturing" },
+    { "name": "Dean Kianne", "college": "Quandrix", "personality": "Brilliant, aloof" },
+    { "name": "Dean Uvilda", "college": "Prismari", "personality": "Strict, artistic" },
+    { "name": "Dean Plargg", "college": "Lorehold", "personality": "Boisterous, adventurous" }
+  ]
+}
