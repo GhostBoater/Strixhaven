@@ -4,8 +4,11 @@ Promise.all([
   fetch('npc.json').then(response => response.json())
 ])
   .then(([encounterData, npcData]) => {
+    console.log('Data loaded:', encounterData, npcData);  // Debugging line
     // Add event listener for encounter generation
     document.getElementById('generateBtn').addEventListener('click', function () {
+      console.log('Generate Encounter button clicked');  // Debugging line
+
       const encounterDiv = document.getElementById('encounter');
       encounterDiv.innerHTML = ''; // Clear previous encounter
 
