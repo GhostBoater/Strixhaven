@@ -6,29 +6,29 @@ Promise.all([
   .then(([encounterData, npcData]) => {
     // Add event listener for encounter generation
     document.getElementById('generateBtn').addEventListener('click', function () {
-      const location = document.getElementById('location').value;
-      const timeOfDay = document.getElementById('timeOfDay').value;
-
-      // Filter encounters based on location and timeOfDay
-      const filteredEncounters = encounterData.encounters.filter(encounter => 
-        encounter.location === location && encounter.timeOfDay === timeOfDay
-      );
-
       const encounterDiv = document.getElementById('encounter');
       encounterDiv.innerHTML = ''; // Clear previous encounter
 
-      if (filteredEncounters.length > 0) {
-        const encounter = filteredEncounters[Math.floor(Math.random() * filteredEncounters.length)];
+      if (encounterData.encounters.length > 0) {
+        // Randomly select an encounter from the list
+        const encounter = encounterData.encounters[Math.floor(Math.random() * encounterData.encounters.length)];
 
-        // Randomly select a student NPC from the list
-        const randomStudent = npcData.students[Math.floor(Math.random() * npcData.students.length)];
+        // Randomly select students from the NPC list
+        const randomStudent1 = npcData.students[Math.floor(Math.random() * npcData.students.length)];
+        const randomStudent2 = npcData.students[Math.floor(Math.random() * npcData.students.length)];
+
+        // Add students to the encounter dynamically
+        encounter.studentsInvolved = [
+          { "name": randomStudent1.name, "college": randomStudent1.college, "year": randomStudent1.year, "personality": randomStudent1.personality },
+          { "name": randomStudent2.name, "college": randomStudent2.college, "year": randomStudent2.year, "personality": randomStudent2.personality }
+        ];
 
         // Encounter Description with Student NPC inline
         const description = document.createElement('div');
         description.classList.add('description');
         description.innerHTML = `
           <h2>Encounter</h2>
-          <p><strong>${randomStudent.name}</strong> (${randomStudent.year} year student from ${randomStudent.college}) rushes up to you in a panic—they've lost their class notes and need help before a quiz.</p>
+          <p><strong>${encounter.studentsInvolved[0].name}</strong> (${encounter.studentsInvolved[0].year} year student from ${encounter.studentsInvolved[0].college}) rushes up to you in a panic—they've lost their class notes and need help before a quiz.</p>
         `;
         encounterDiv.appendChild(description);
 
@@ -36,7 +36,7 @@ Promise.all([
         const studentBlurb = document.createElement('div');
         studentBlurb.classList.add('student-blurb');
         studentBlurb.innerHTML = `
-          <p><em>${randomStudent.name}, a ${randomStudent.year} year student from ${randomStudent.college}, is ${randomStudent.personality.toLowerCase()}.</em></p>
+          <p><em>${encounter.studentsInvolved[0].name}, a ${encounter.studentsInvolved[0].year} year student from ${encounter.studentsInvolved[0].college}, is ${encounter.studentsInvolved[0].personality.toLowerCase()}.</em></p>
         `;
         encounterDiv.appendChild(studentBlurb);
 
@@ -48,20 +48,20 @@ Promise.all([
         choiceHeader.textContent = "Choices:";
         choicesDiv.appendChild(choiceHeader);
 
+        // List of Choices
+        const choiceList = document.createElement('ul');  // Creating a list for choices
+
         encounter.choices.forEach(choice => {
-          const choiceButton = document.createElement('button');
-          choiceButton.textContent = `Roll: ${choice.roll}`;
-          
-          const effectText = document.createElement('p');
-          effectText.classList.add('effect');
-          effectText.textContent = `Effect: ${choice.effect}`;
-          choicesDiv.appendChild(choiceButton);
-          choicesDiv.appendChild(effectText);
+          const choiceItem = document.createElement('li');
+          choiceItem.classList.add('choice-item');
+          choiceItem.textContent = `Roll: ${choice.roll} - Effect: ${choice.effect}`;
+          choiceList.appendChild(choiceItem);
         });
 
+        choicesDiv.appendChild(choiceList);
         encounterDiv.appendChild(choicesDiv);
       } else {
-        encounterDiv.textContent = 'No encounters found for the selected location and time.';
+        encounterDiv.textContent = 'No encounters available.';
       }
     });
   })
