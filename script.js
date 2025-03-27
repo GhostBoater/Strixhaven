@@ -10,7 +10,7 @@ fetch('encounters.json')
   })
   .catch(error => console.error('Error loading encounters:', error));
 
-fetch('npc.json')
+fetch('npcs.json')
   .then(response => response.json())
   .then(data => {
     npcsData = data.npcs;
