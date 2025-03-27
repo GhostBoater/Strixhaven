@@ -1,4 +1,3 @@
-// Load the NPCs and Encounters JSON data
 let encountersData;
 let npcsData;
 
@@ -7,6 +6,7 @@ fetch('encounters.json')
   .then(response => response.json())
   .then(data => {
     encountersData = data.encounters;
+    checkDataLoaded();
   })
   .catch(error => console.error('Error loading encounters:', error));
 
@@ -14,8 +14,19 @@ fetch('npcs.json')
   .then(response => response.json())
   .then(data => {
     npcsData = data.npcs;
+    checkDataLoaded();
   })
   .catch(error => console.error('Error loading NPCs:', error));
+
+let isDataLoaded = false;
+
+// Function to check if both encounters and NPCs data are loaded
+function checkDataLoaded() {
+  if (encountersData && npcsData) {
+    isDataLoaded = true;
+    document.getElementById("generateBtn").disabled = false;  // Enable the button
+  }
+}
 
 // Function to get a random NPC
 function getRandomStudent() {
@@ -24,7 +35,7 @@ function getRandomStudent() {
 
 // Function to generate an encounter
 function generateEncounter() {
-  if (!encountersData || !npcsData) {
+  if (!isDataLoaded) {
     alert("Data is still loading, please try again later.");
     return;
   }
@@ -56,3 +67,6 @@ function generateEncounter() {
 
 // Add event listener to the generate button
 document.getElementById("generateBtn").addEventListener("click", generateEncounter);
+
+// Initially disable the generate button until data is loaded
+document.getElementById("
