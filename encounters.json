@@ -4,7 +4,7 @@
       "description": "While walking through the grounds, a small creature, a Pseudodragon, lands on your shoulder and nuzzles up to you. It looks like it needs something.",
       "studentsInvolved": 2,
       "choices": [
-        { "roll": "Animal Handling DC 10", "effect": "You manage to calm the Pseudodragon, and it seems to trust you. Tasha smiles and thanks you." },
+        { "roll": "Animal Handling DC 10", "effect": "You manage to calm the Pseudodragon, and it seems to trust you. [student1] smiles and thanks you." },
         { "roll": "Insight DC 12", "effect": "You realize the Pseudodragon is trying to lead you somewhere—follow it." },
         { "roll": "No roll", "effect": "You leave the Pseudodragon alone, and it flies off disappointed." }
       ]
@@ -13,9 +13,9 @@
       "description": "You and your friends have a small scuffle with a few mischievous *Gremlins* who seem to be causing havoc around the student dorms. They are making loud noises and hiding things.",
       "studentsInvolved": 2,
       "choices": [
-        { "roll": "Intimidation DC 15", "effect": "You manage to scare the Gremlins off, and they scatter. Ziraj laughs and admires your bravery." },
+        { "roll": "Intimidation DC 15", "effect": "You manage to scare the Gremlins off, and they scatter. [student1] laughs and admires your bravery." },
         { "roll": "Perception DC 13", "effect": "You find where the Gremlins are hiding their stolen objects and manage to return everything." },
-        { "roll": "No roll", "effect": "You simply walk away, letting the Gremlins continue their chaos. Ziraj seems unimpressed." }
+        { "roll": "No roll", "effect": "You simply walk away, letting the Gremlins continue their chaos. [student1] seems unimpressed." }
       ]
     },
     {
@@ -24,16 +24,16 @@
       "choices": [
         { "roll": "Arcana DC 14", "effect": "You identify the summoning error and quickly dismiss the Imp before things escalate." },
         { "roll": "Persuasion DC 12", "effect": "You talk to the Imp and convince it to leave on its own, avoiding any trouble." },
-        { "roll": "No roll", "effect": "You decide to watch the chaos unfold and Quentillius manages to dispel the Imp himself—grumbling about your inaction." }
+        { "roll": "No roll", "effect": "You decide to watch the chaos unfold and [student1] manages to dispel the Imp himself—grumbling about your inaction." }
       ]
     },
     {
       "description": "You find yourself in the middle of a water balloon fight between students, some of whom are using magic to enhance the effect of their balloons.",
       "studentsInvolved": 2,
       "choices": [
-        { "roll": "Dexterity DC 10", "effect": "You dodge the water balloons skillfully, impressing the onlookers, including Tasha." },
+        { "roll": "Dexterity DC 10", "effect": "You dodge the water balloons skillfully, impressing the onlookers, including [student1]." },
         { "roll": "Sleight of Hand DC 12", "effect": "You stealthily refill a balloon with water and launch it at an unsuspecting student." },
-        { "roll": "No roll", "effect": "You decide to sit out, but Tasha offers you a balloon as a peace offering." }
+        { "roll": "No roll", "effect": "You decide to sit out, but [student1] offers you a balloon as a peace offering." }
       ]
     },
     {
@@ -42,7 +42,7 @@
       "choices": [
         { "roll": "Animal Handling DC 13", "effect": "You tame the Giant Rats, getting them to leave without causing more problems." },
         { "roll": "Athletics DC 14", "effect": "You push the rats away with a swift shove, saving the food cart but getting a little dirty in the process." },
-        { "roll": "No roll", "effect": "You just watch the scene unfold and Quentillius shooes the rats away using magic." }
+        { "roll": "No roll", "effect": "You just watch the scene unfold and [student1] shoos the rats away using magic." }
       ]
     }
   ]
