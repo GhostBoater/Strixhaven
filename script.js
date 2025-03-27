@@ -1,71 +1,68 @@
-// Fetch the encounter and NPC data from the respective JSON files
-Promise.all([
-  fetch('encounters.json').then(response => response.json()),
-  fetch('npc.json').then(response => response.json())
-])
-  .then(([encounterData, npcData]) => {
-    console.log('Data loaded:', encounterData, npcData);  // Debugging line
-    // Add event listener for encounter generation
-    document.getElementById('generateBtn').addEventListener('click', function () {
-      console.log('Generate Encounter button clicked');  // Debugging line
+// Load the NPCs and Encounters JSON data
+let encountersData;
+let npcsData;
 
-      const encounterDiv = document.getElementById('encounter');
-      encounterDiv.innerHTML = ''; // Clear previous encounter
-
-      if (encounterData.encounters.length > 0) {
-        // Randomly select an encounter from the list
-        const encounter = encounterData.encounters[Math.floor(Math.random() * encounterData.encounters.length)];
-
-        // Randomly select students from the NPC list
-        const randomStudent1 = npcData.students[Math.floor(Math.random() * npcData.students.length)];
-        const randomStudent2 = npcData.students[Math.floor(Math.random() * npcData.students.length)];
-
-        // Add students to the encounter dynamically
-        encounter.studentsInvolved = [
-          { "name": randomStudent1.name, "college": randomStudent1.college, "year": randomStudent1.year, "personality": randomStudent1.personality },
-          { "name": randomStudent2.name, "college": randomStudent2.college, "year": randomStudent2.year, "personality": randomStudent2.personality }
-        ];
-
-        // Encounter Description with Student NPC inline
-        const description = document.createElement('div');
-        description.classList.add('description');
-        description.innerHTML = `
-          <h2>Encounter</h2>
-          <p><strong>${encounter.studentsInvolved[0].name}</strong> (${encounter.studentsInvolved[0].year} year student from ${encounter.studentsInvolved[0].college}) rushes up to you in a panic—they've lost their class notes and need help before a quiz.</p>
-        `;
-        encounterDiv.appendChild(description);
-
-        // Student's Blurb Section
-        const studentBlurb = document.createElement('div');
-        studentBlurb.classList.add('student-blurb');
-        studentBlurb.innerHTML = `
-          <p><em>${encounter.studentsInvolved[0].name}, a ${encounter.studentsInvolved[0].year} year student from ${encounter.studentsInvolved[0].college}, is ${encounter.studentsInvolved[0].personality.toLowerCase()}.</em></p>
-        `;
-        encounterDiv.appendChild(studentBlurb);
-
-        // Choices Section
-        const choicesDiv = document.createElement('div');
-        choicesDiv.classList.add('choices');
-        const choiceHeader = document.createElement('p');
-        choiceHeader.classList.add('choice-header');
-        choiceHeader.textContent = "Choices:";
-        choicesDiv.appendChild(choiceHeader);
-
-        // List of Choices
-        const choiceList = document.createElement('ul');  // Creating a list for choices
-
-        encounter.choices.forEach(choice => {
-          const choiceItem = document.createElement('li');
-          choiceItem.classList.add('choice-item');
-          choiceItem.textContent = `Roll: ${choice.roll} - Effect: ${choice.effect}`;
-          choiceList.appendChild(choiceItem);
-        });
-
-        choicesDiv.appendChild(choiceList);
-        encounterDiv.appendChild(choicesDiv);
-      } else {
-        encounterDiv.textContent = 'No encounters available.';
-      }
-    });
+// Fetch encounters and NPCs from JSON files
+fetch('encounters.json')
+  .then(response => response.json())
+  .then(data => {
+    encountersData = data.encounters;
   })
-  .catch(error => console.error('Error loading encounters or NPCs:', error));
+  .catch(error => console.error('Error loading encounters:', error));
+
+fetch('npc.json')
+  .then(response => response.json())
+  .then(data => {
+    npcsData = data.npcs;
+  })
+  .catch(error => console.error('Error loading NPCs:', error));
+
+// Function to get a random NPC based on how many students are needed
+function getRandomStudents(numStudents) {
+  let randomStudents = [];
+  let shuffled = [...npcsData].sort(() => 0.5 - Math.random()); // Shuffle the NPC list
+  for (let i = 0; i < numStudents; i++) {
+    randomStudents.push(shuffled[i]);
+  }
+  return randomStudents;
+}
+
+// Function to generate an encounter
+function generateEncounter() {
+  if (!encountersData || !npcsData) {
+    alert("Data is still loading, please try again later.");
+    return;
+  }
+
+  // Get a random encounter
+  let randomEncounter = encountersData[Math.floor(Math.random() * encountersData.length)];
+
+  // Get the required number of students for this encounter
+  let studentsInvolved = getRandomStudents(randomEncounter.studentsInvolved);
+
+  // Create the encounter description
+  let encounterDescription = randomEncounter.description;
+
+  // Add student details dynamically to the description
+  studentsInvolved.forEach((student, index) => {
+    encounterDescription += `<br><br>${student.name}, a ${student.year} year student from ${student.college}, is ${student.personality.join(", ")}.`;
+  });
+
+  // Display the encounter and the choices
+  let encounterText = `<h3>Encounter:</h3><p>${encounterDescription}</p><h4>Choices:</h4><ul>`;
+
+  randomEncounter.choices.forEach(choice => {
+    // Replace [student1] with the actual student's name
+    let updatedEffect = choice.effect.replace("[student1]", studentsInvolved[0].name);
+
+    encounterText += `<li><strong>Roll:</strong> ${choice.roll} | <strong>Effect:</strong> ${updatedEffect}</li>`;
+  });
+
+  encounterText += `</ul>`;
+
+  // Display the encounter on the page
+  document.getElementById("encounter").innerHTML = encounterText;
+}
+
+// Add event listener to the generate button
+document.getElementById("generateBtn").addEventListener("click", generateEncounter);
